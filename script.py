@@ -23,7 +23,7 @@ if len(logins) != 0:
             response = session.get('https://instagram.com/'+logins[i]+'?__a=1')
             data = json.loads(response.text)
             id = data['graphql']['user']['id']
-            file1 = open("123.txt","w+") # ВЫВОД В TXT ФАЙЛ
+            file1 = open("123.txt","a+") # ВЫВОД В TXT ФАЙЛ
 		    file1.write(id)
 		    file1.close()
             print(id)
@@ -41,7 +41,7 @@ if len(ids) != 0:
             response = session.get('https://i.instagram.com/api/v1/users/'+ids[i]+'/info/')
             data = json.loads(response.text)
             id = data['user']['username']
-            file1 = open("123.txt","w+") 
+            file1 = open("123.txt","a+") 
 		    file1.write(id)
 		    file1.close()
             print(id)
