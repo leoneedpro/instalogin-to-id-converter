@@ -24,7 +24,7 @@ if len(logins) != 0:
             data = json.loads(response.text)
             id = data['graphql']['user']['id']
             file1 = open("123.txt","a+") # ВЫВОД В TXT ФАЙЛ
-		    file1.write(id)
+		    file1.write(id + "\n")
 		    file1.close()
             print(id)
         except json.decoder.JSONDecodeError:
@@ -42,7 +42,7 @@ if len(ids) != 0:
             data = json.loads(response.text)
             id = data['user']['username']
             file1 = open("123.txt","a+") 
-		    file1.write(id)
+		    file1.write(id + "\n")
 		    file1.close()
             print(id)
         except json.decoder.JSONDecodeError:
