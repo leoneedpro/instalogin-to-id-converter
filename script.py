@@ -17,11 +17,18 @@ if len(logins) != 0:
     print('------------------')
     print('ID - аккаунтов')
     print('------------------')
+   
     for i in range(len(logins)):
-        response = session.get('https://instagram.com/'+logins[i]+'?__a=1')
-        data = json.loads(response.text)
-        id = data['graphql']['user']['id']
-        print(id)
+        try: # ОБРАБАТЫВАЕМ ОШИБКУ, И ПРОДОЛЖАЕМ РАБОТУ, ЕСЛИ ЛОГИН НЕ СУЩЕСТВУЕТ
+            response = session.get('https://instagram.com/'+logins[i]+'?__a=1')
+            data = json.loads(response.text)
+            id = data['graphql']['user']['id']
+            file1 = open("123.txt","w+") # ВЫВОД В TXT ФАЙЛ
+		    file1.write(id)
+		    file1.close()
+            print(id)
+        except json.decoder.JSONDecodeError:
+            continue
 # ------------------------------------------------------------------
 # # ID to Username
 # ------------------------------------------------------------------
@@ -30,7 +37,13 @@ if len(ids) != 0:
     print('Username - аккаунтов')
     print('------------------')
     for i in range(len(ids)):
-        response = session.get('https://i.instagram.com/api/v1/users/'+ids[i]+'/info/')
-        data = json.loads(response.text)
-        id = data['user']['username']
-        print(id)
+        try:
+            response = session.get('https://i.instagram.com/api/v1/users/'+ids[i]+'/info/')
+            data = json.loads(response.text)
+            id = data['user']['username']
+            file1 = open("123.txt","w+") 
+		    file1.write(id)
+		    file1.close()
+            print(id)
+        except json.decoder.JSONDecodeError:
+            continue
